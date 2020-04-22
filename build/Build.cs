@@ -16,9 +16,17 @@ using static Nuke.Common.Logger;
 [GitHubActions(
     "scheduled",
     GitHubActionsImage.UbuntuLatest,
-    OnCronSchedule = "* * * * *",
-    OnPushBranches = new[]{"master"},
-    InvokedTargets = new[]{nameof(Foo)})]
+    OnCronSchedule = "15 * * * *",
+    ImportGitHubTokenAs = nameof(GitHubToken),
+    ImportSecrets =
+        new[]
+        {
+            nameof(TwitterConsumerKey),
+            nameof(TwitterConsumerSecret),
+            nameof(TwitterAccessToken),
+            nameof(TwitterAccessTokenSecret)
+        },
+    InvokedTargets = new[] { nameof(Foo) })]
 partial class Build : NukeBuild
 {
     /// Support plugins are available for:
@@ -27,6 +35,13 @@ partial class Build : NukeBuild
     ///   - Microsoft VisualStudio     https://nuke.build/visualstudio
     ///   - Microsoft VSCode           https://nuke.build/vscode
     public static int Main() => Execute<Build>(x => x.Foo);
+
+    [Parameter] readonly string GitHubToken;
+
+    [Parameter] readonly string TwitterConsumerKey;
+    [Parameter] readonly string TwitterConsumerSecret;
+    [Parameter] readonly string TwitterAccessToken;
+    [Parameter] readonly string TwitterAccessTokenSecret;
 
     Target Foo => _ => _
         .Executes(() =>
@@ -37,8 +52,12 @@ partial class Build : NukeBuild
     Target Tweet => _ => _
         .Executes(async () =>
         {
-            var credentials = new TwitterCredentials(ConsumerKey, ConsumerSecret, AccessToken, AccessTokenSecret);
-            var client = new TwitterClient(credentials);
+            var client = new TwitterClient(
+                new TwitterCredentials(
+                    ConsumerKey,
+                    ConsumerSecret,
+                    AccessToken,
+                    AccessTokenSecret));
 
             var directory = RootDirectory / "src" / "shell-completion";
             var text = ReadAllText(directory.GlobFiles("*.md").Single());
@@ -53,13 +72,13 @@ partial class Build : NukeBuild
                 .Select(x => x.Result).ToList();
 
             var tweetParameters = new PublishTweetParameters
-                                         {
-                                             Text = text,
-                                             Medias = media
-                                         };
+                                  {
+                                      Text = text,
+                                      Medias = media
+                                  };
 
             var tweet = await client.Tweets.PublishTweet(tweetParameters);
 
-            Info($"Sent tweet: https://twitter.com/{tweet.Id}");
+            Info($"Sent tweet: {tweet.Url}");
         });
 }
