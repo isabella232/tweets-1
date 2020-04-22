@@ -16,7 +16,8 @@ using static Nuke.Common.Logger;
 [GitHubActions(
     "scheduled",
     GitHubActionsImage.UbuntuLatest,
-    OnCronSchedule = "*/5 * * * *",
+    OnCronSchedule = "* * * * *",
+    OnPushBranches = new[]{"master"},
     InvokedTargets = new[]{nameof(Foo)})]
 partial class Build : NukeBuild
 {
