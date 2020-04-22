@@ -7,15 +7,16 @@
     <NoWarn>CS0649;CS0169</NoWarn>
     <NukeRootDirectory>..</NukeRootDirectory>
     <NukeScriptDirectory>..</NukeScriptDirectory>
+    <ReplacePackageReferences>true</ReplacePackageReferences>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Nuke.Common" Version="0.24.9"/>
-    <PackageReference Include="TweetinviAPI" Version="4.0.3"/>
+    <PackageReference Include="Nuke.Common" Version="0.24.9" />
+    <PackageReference Include="TweetinviAPI" Version="5.0.0-alpha-1" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="../src/**/*" LinkBase="tips"/>
+    <None Include="../src/**/*" LinkBase="tips" />
   </ItemGroup>
 
 </Project>
