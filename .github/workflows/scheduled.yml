@@ -17,11 +17,9 @@
 name: scheduled
 
 on:
-  push:
-    branches:
-      - master
   schedule:
-      - cron: '* * * * *'
+    # * is a special character in YAML so you have to quote this string
+    - cron:  '* * * * *'
 
 jobs:
   ubuntu-latest:
