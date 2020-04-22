@@ -17,11 +17,11 @@
 name: scheduled
 
 on:
-  push
+  push:
     branches:
       - master
-    schedule:
-        - cron: '* * * * *'
+  schedule:
+      - cron: '* * * * *'
 
 jobs:
   ubuntu-latest:
