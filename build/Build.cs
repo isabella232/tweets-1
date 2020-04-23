@@ -16,7 +16,7 @@ using static Nuke.Common.Logger;
 [GitHubActions(
     "scheduled",
     GitHubActionsImage.UbuntuLatest,
-    OnCronSchedule = "*/15 * * * *",
+    OnCronSchedule = "0 13 * * 1,4",
     ImportGitHubTokenAs = nameof(GitHubToken),
     ImportSecrets =
         new[]
@@ -54,10 +54,10 @@ partial class Build : NukeBuild
         {
             var client = new TwitterClient(
                 new TwitterCredentials(
-                    ConsumerKey,
-                    ConsumerSecret,
-                    AccessToken,
-                    AccessTokenSecret));
+                    TwitterConsumerKey,
+                    TwitterConsumerSecret,
+                    TwitterAccessToken,
+                    TwitterAccessTokenSecret));
 
             var directory = RootDirectory / "src" / "shell-completion";
             var text = ReadAllText(directory.GlobFiles("*.md").Single());
