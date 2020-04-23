@@ -16,7 +16,7 @@ using static Nuke.Common.Logger;
 [GitHubActions(
     "scheduled",
     GitHubActionsImage.UbuntuLatest,
-    OnCronSchedule = "15 * * * *",
+    OnCronSchedule = "*/15 * * * *",
     ImportGitHubTokenAs = nameof(GitHubToken),
     ImportSecrets =
         new[]
