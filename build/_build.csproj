@@ -17,6 +17,14 @@
 
   <ItemGroup>
     <None Include="../src/**/*" LinkBase="tips" />
+    <None Update="..\src\include-relevant-files\include-relevant-files.md">
+      <LinkBase>tips</LinkBase>
+      <Link>tips\include-relevant-files\include-relevant-files.md</Link>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Update="..\src\14-reasons-for-adopting-nuke" />
   </ItemGroup>
 
 </Project>
