@@ -18,7 +18,7 @@ name: scheduled
 
 on:
   schedule:
-    - cron: '0 13 * * 1,4'
+    - cron: '0 13 * * 2'
 
 jobs:
   ubuntu-latest:
@@ -26,8 +26,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: Run './build.cmd Foo'
-        run: ./build.cmd Foo
+      - name: Run './build.cmd Tweet'
+        run: ./build.cmd Tweet
         env:
             GitHubToken: ${{ secrets.GITHUB_TOKEN }}
             TwitterConsumerKey: ${{ secrets.TwitterConsumerKey }}

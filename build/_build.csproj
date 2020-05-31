@@ -11,20 +11,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Nuke.Common" Version="0.24.9" />
+    <PackageReference Include="Nuke.Common" Version="0.24.11" />
     <PackageReference Include="TweetinviAPI" Version="5.0.0-alpha-1" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="../src/**/*" LinkBase="tips" />
-    <None Update="..\src\include-relevant-files\include-relevant-files.md">
-      <LinkBase>tips</LinkBase>
-      <Link>tips\include-relevant-files\include-relevant-files.md</Link>
-    </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Update="..\src\14-reasons-for-adopting-nuke" />
+    <None Include="../tweets/**/*" LinkBase="tweets" />
   </ItemGroup>
 
 </Project>

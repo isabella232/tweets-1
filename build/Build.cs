@@ -3,6 +3,7 @@ using System.Linq;
 using Nuke.Common;
 using Nuke.Common.CI.GitHubActions;
 using Nuke.Common.Execution;
+using Nuke.Common.IO;
 using Nuke.Common.Utilities;
 using Tweetinvi;
 using Tweetinvi.Models;
@@ -16,7 +17,7 @@ using static Nuke.Common.Logger;
 [GitHubActions(
     "scheduled",
     GitHubActionsImage.UbuntuLatest,
-    OnCronSchedule = "0 13 * * 1,4",
+    OnCronSchedule = "0 13 * * 2",
     ImportGitHubTokenAs = nameof(GitHubToken),
     ImportSecrets =
         new[]
@@ -26,7 +27,7 @@ using static Nuke.Common.Logger;
             nameof(TwitterAccessToken),
             nameof(TwitterAccessTokenSecret)
         },
-    InvokedTargets = new[] { nameof(Foo) })]
+    InvokedTargets = new[] {nameof(Tweet)})]
 partial class Build : NukeBuild
 {
     /// Support plugins are available for:
@@ -34,7 +35,7 @@ partial class Build : NukeBuild
     ///   - JetBrains Rider            https://nuke.build/rider
     ///   - Microsoft VisualStudio     https://nuke.build/visualstudio
     ///   - Microsoft VSCode           https://nuke.build/vscode
-    public static int Main() => Execute<Build>(x => x.Foo);
+    public static int Main() => Execute<Build>(x => x.Tweet);
 
     [Parameter] readonly string GitHubToken;
 
@@ -43,11 +44,7 @@ partial class Build : NukeBuild
     [Parameter] readonly string TwitterAccessToken;
     [Parameter] readonly string TwitterAccessTokenSecret;
 
-    Target Foo => _ => _
-        .Executes(() =>
-        {
-            Console.WriteLine(DateTime.Now);
-        });
+    AbsolutePath TweetDirectory => RootDirectory / "tweets";
 
     Target Tweet => _ => _
         .Executes(async () =>
@@ -59,7 +56,9 @@ partial class Build : NukeBuild
                     TwitterAccessToken,
                     TwitterAccessTokenSecret));
 
-            var directory = RootDirectory / "src" / "shell-completion";
+            var tweets = TweetDirectory.GlobDirectories("*").OrderBy(x => (string) x).ToList();
+            var directory = tweets.ElementAt((int) (DateTime.Now.Ticks / TimeSpan.FromDays(7).Ticks) % tweets.Count);
+
             var text = ReadAllText(directory.GlobFiles("*.md").Single());
             var media = directory.GlobFiles("*.png", "*.jpeg", "*.jpg", "*.gif")
                 .Select(async x => await client.Upload.UploadTweetImage(
@@ -72,10 +71,10 @@ partial class Build : NukeBuild
                 .Select(x => x.Result).ToList();
 
             var tweetParameters = new PublishTweetParameters
-                                  {
-                                      Text = text,
-                                      Medias = media
-                                  };
+            {
+                Text = text,
+                Medias = media
+            };
 
             var tweet = await client.Tweets.PublishTweet(tweetParameters);
 
