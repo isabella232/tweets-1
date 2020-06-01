@@ -11,4 +11,4 @@
 8. Build Sharing
 9. Community
 
-👀 Watch at https://youtu.be/SVD70QYvQ6I
+👀 Watch at: https://youtu.be/SVD70QYvQ6I

@@ -8,4 +8,4 @@ A couple lines of code to parallelize our test execution on @teamcity and @azure
 4. ?
 5. Profit 😼
 
-📖 Read more at http://www.nuke.build/docs/authoring-builds/ci-integration.html
+📖 Read more at: http://www.nuke.build/docs/authoring-builds/ci-integration.html
