@@ -16,5 +16,9 @@
     <PackageReference Include="SixLabors.ImageSharp.Drawing" Version="1.0.0-beta0008" />
     <PackageReference Include="TweetinviAPI" Version="5.0.0-alpha-1" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <None Include="../tweets/**/*.*" LinkBase="tweets" />
+  </ItemGroup>
 
 </Project>
