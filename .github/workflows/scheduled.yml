@@ -17,11 +17,8 @@
 name: scheduled
 
 on:
-  push:
-    branches:
-      - master
   schedule:
-    - cron: '0 13 * * 2'
+    - cron: '0 13 * * 3'
 
 jobs:
   ubuntu-latest:

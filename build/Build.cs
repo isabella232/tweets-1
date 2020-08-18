@@ -30,7 +30,7 @@ using static Nuke.Common.Logger;
 [GitHubActions(
     "scheduled",
     GitHubActionsImage.UbuntuLatest,
-    OnCronSchedule = "0 13 * * 2",
+    OnCronSchedule = "0 13 * * 3",
     ImportGitHubTokenAs = nameof(GitHubToken),
     ImportSecrets =
         new[]
