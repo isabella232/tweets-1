@@ -1,4 +1,4 @@
-📖 Check out "14 reasons for adopting Nuke as your next build automation tool" by @ddoomen
+📖 Check out "14 Reasons for adopting NUKE as your next Build Automation Tool" by @ddoomen
 
 Featuring:
 - SDK Bootstrapping
