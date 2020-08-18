@@ -60,6 +60,10 @@ partial class Build : NukeBuild
     AbsolutePath TweetDirectory => RootDirectory / "tweets";
 
     Target Tweet => _ => _
+        .Requires(() => TwitterConsumerKey)
+        .Requires(() => TwitterConsumerSecret)
+        .Requires(() => TwitterAccessToken)
+        .Requires(() => TwitterAccessTokenSecret)
         .Executes(async () =>
         {
             var client = new TwitterClient(
