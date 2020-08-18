@@ -17,6 +17,9 @@
 name: scheduled
 
 on:
+  push:
+    branches:
+      - master
   schedule:
     - cron: '0 13 * * 2'
 
