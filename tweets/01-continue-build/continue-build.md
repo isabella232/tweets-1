@@ -4,4 +4,4 @@ Save waiting time and add --continue to your invocation to continue from the las
 
 ❌➡️✅
 
-Read, Set, Build!
+Ready, Set, Build!
