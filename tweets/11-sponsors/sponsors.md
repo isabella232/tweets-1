@@ -1,5 +1,5 @@
-We want take a moment and say thanks to all the sponsors of NUKE! 💖
+Huge thanks to all our sponsors! 💖
 
-@ACPWinitiate @alexsink @alexshyba @altolainc @danielvaladas @david_dotnet @davidpoindexter @GeorgDangl @mattbrailsford @OctopusDeploy @rlittlesii @RonKMyers @totollygeek
+@ACPWinitiate @Actipro @alexsink @alexshyba @altolainc @anton_t0shik @bitbonk @danielvaladas @david_dotnet @davidpoindexter @GeorgDangl @mattbrailsford @OctopusDeploy @rlittlesii @RonKMyers @totollygeek
 
-Feels good to have your trust!! 🤗
+Feels good to have your support!! 🤗
