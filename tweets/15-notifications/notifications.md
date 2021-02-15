@@ -1,9 +1,10 @@
-Fancy adding some build notifications to your @SlackHQ workspace? 📣😮
+Fancy adding some build notifications to your @SlackHQ workspace? 😮📢
 
 🍿 Live Reporting
+🧬 Links to Commits
 ⏳ Estimated Time Remaining
-🧬 Listing Commits
-🙈 Tagging Build Breakers
-🎀 Beautiful
+⏱ Duration / Exit Code
+🛎 Notification for Build Breakers
+🌐 Links to web UIs
 
 #BetterBuilding
