@@ -1,0 +1,1 @@
+When generating CI configurations (another thread), it's very convenient to reference parameters using the nameof operator 😮 Parameters being actual members once more ensure that our whole build pipeline remains refactoring safe! 💺
