@@ -1,3 +1,3 @@
-🗳 Back to commit messages!
+🙆 Almost forgot, build sharing!
 
-Often we change our build implementation just for the sole purpose of testing another configuration. That's (commit) history! Just call "nuke++ <args>", and a new commit will be pushed containing the parameters to run! Shell-completion included! 🤓
+When you create reusable build components (another thread), you usually want to avoid smurf-naming inside your component, but have them properly named to the outside world. Welcome the ParameterPrefixAttribute 🎯

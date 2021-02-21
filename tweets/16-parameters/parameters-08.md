@@ -1,3 +1,3 @@
-🕵️‍♂️ In a growing build pipeline it becomes easy to lose track of what values are being passed. But no need for custom auditing logic, just put the AuditMembersAttribute onto your build class and be done!
+🗳 Back to commit messages!
 
-Comes with great formatting and grouping 🧰
+Often we change our build implementation just for the sole purpose of testing another configuration. That's (commit) history! Just call "nuke++ <args>", and a new commit will be pushed containing the parameters to run! Shell-completion included! 🤓

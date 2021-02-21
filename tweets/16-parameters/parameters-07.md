@@ -1,11 +1,3 @@
-Parameters support all common target types:
+🕵️‍♂️ In a growing build pipeline we can easily lose track of what values are being passed. But no need for custom auditing logic either! Just put the AuditMembersAttribute onto your build class and be done.
 
-💚 String
-💜 Boolean
-🖤 Integer
-💛 Enumerations
-
-As well as their 🤍 nullable and 💙 array counterparts. The conversion is even extensible to pass more complex or user-defined values, like:
-
-🧡 Solutions/Projects, or
-❤️ Absolute paths
+Comes with great formatting and grouping 🧰
