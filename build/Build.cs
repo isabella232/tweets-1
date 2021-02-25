@@ -48,10 +48,10 @@ partial class Build : NukeBuild
     ///   - Microsoft VSCode           https://nuke.build/vscode
     public static int Main() => Execute<Build>(x => x.SendTweet);
 
-    [Parameter] readonly string ConsumerKey;
-    [Parameter] readonly string ConsumerSecret;
-    [Parameter] readonly string AccessToken;
-    [Parameter] readonly string AccessTokenSecret;
+    [Parameter] readonly string TwitterConsumerKey;
+    [Parameter] readonly string TwitterConsumerSecret;
+    [Parameter] readonly string TwitterAccessToken;
+    [Parameter] readonly string TwitterAccessTokenSecret;
 
     AbsolutePath TweetDirectory => RootDirectory / "tweets";
     AbsolutePath TweetStatisticsFile => RootDirectory / "tweet-statistics.csv";
@@ -68,18 +68,18 @@ partial class Build : NukeBuild
 
     Target UpdateTweetStatistics => _ => _
         .DependsOn(LoadTweetStatistics)
-        .Requires(() => ConsumerKey)
-        .Requires(() => ConsumerSecret)
-        .Requires(() => AccessToken)
-        .Requires(() => AccessTokenSecret)
+        .Requires(() => TwitterConsumerKey)
+        .Requires(() => TwitterConsumerSecret)
+        .Requires(() => TwitterAccessToken)
+        .Requires(() => TwitterAccessTokenSecret)
         .Executes(() =>
         {
             var client = new TwitterClient(
                 new TwitterCredentials(
-                    ConsumerKey,
-                    ConsumerSecret,
-                    AccessToken,
-                    AccessTokenSecret));
+                    TwitterConsumerKey,
+                    TwitterConsumerSecret,
+                    TwitterAccessToken,
+                    TwitterAccessTokenSecret));
 
             TweetStatistics.Where(x => !x.FavoriteCount.HasValue)
                 .ForEach(x =>
@@ -97,10 +97,10 @@ partial class Build : NukeBuild
         .DependsOn(LoadTweetStatistics)
         .After(UpdateTweetStatistics)
         .Triggers(SaveTweetStatistics)
-        .Requires(() => ConsumerKey)
-        .Requires(() => ConsumerSecret)
-        .Requires(() => AccessToken)
-        .Requires(() => AccessTokenSecret)
+        .Requires(() => TwitterConsumerKey)
+        .Requires(() => TwitterConsumerSecret)
+        .Requires(() => TwitterAccessToken)
+        .Requires(() => TwitterAccessTokenSecret)
         .Executes(async () =>
         {
             string GetTweetBaseName()
@@ -121,10 +121,10 @@ partial class Build : NukeBuild
 
             var client = new TwitterClient(
                 new TwitterCredentials(
-                    ConsumerKey,
-                    ConsumerSecret,
-                    AccessToken,
-                    AccessTokenSecret));
+                    TwitterConsumerKey,
+                    TwitterConsumerSecret,
+                    TwitterAccessToken,
+                    TwitterAccessTokenSecret));
 
             foreach (var tweetFile in tweetFiles)
             {
