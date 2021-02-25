@@ -18,6 +18,7 @@ using Nuke.Common.Utilities.Collections;
 using Tweetinvi;
 using Tweetinvi.Models;
 using Tweetinvi.Parameters;
+using static Nuke.Common.ControlFlow;
 using static Nuke.Common.IO.TextTasks;
 using static Nuke.Common.Logger;
 using static Nuke.Common.Tools.Git.GitTasks;
@@ -116,6 +117,7 @@ partial class Build : NukeBuild
                 .GlobFiles($"{tweetBaseName}*.md")
                 .Select(x => x.ToString())
                 .OrderBy(x => x).ToList();
+            Assert(tweetFiles.Count > 0, "tweetFiles.Count > 0");
 
             var client = new TwitterClient(
                 new TwitterCredentials(
