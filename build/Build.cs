@@ -58,6 +58,7 @@ partial class Build : NukeBuild
     List<TweetData> TweetStatistics = new List<TweetData>();
 
     Target LoadTweetStatistics => _ => _
+        .OnlyWhenStatic(() => File.Exists(TweetStatisticsFile))
         .Executes(() =>
         {
             using var reader = new StreamReader(TweetStatisticsFile);
