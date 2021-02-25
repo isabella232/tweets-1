@@ -17,7 +17,7 @@ jobs:
         run: ./build.cmd SendTweet
         env:
             GitHubToken: ${{ secrets.GITHUB_TOKEN }}
-            TwitterConsumerKey: ${{ secrets.TwitterConsumerKey }}
-            TwitterConsumerSecret: ${{ secrets.TwitterConsumerSecret }}
-            TwitterAccessToken: ${{ secrets.TwitterAccessToken }}
-            TwitterAccessTokenSecret: ${{ secrets.TwitterAccessTokenSecret }}
+            TwitterConsumerKey: ${{ secrets.TWITTER_CONSUMER_KEY }}
+            TwitterConsumerSecret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
+            TwitterAccessToken: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+            TwitterAccessTokenSecret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
