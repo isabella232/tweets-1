@@ -5,4 +5,4 @@ Parameters are resolved from:
 🌐 Environment variables
 📟 Command-line arguments
 
-What can we say? Typos are pretty much impossible thanks to shell-completion in Bash, @ohmyzsh, @OhMyFishShell and @PowerShell_Team:
+What can we say? Typos are pretty much impossible thanks to shell-completion in Bash, @ohmyzsh, @OhMyFishShell and @PowerShell_Team!
