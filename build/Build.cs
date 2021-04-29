@@ -25,20 +25,20 @@ using static Nuke.Common.Tools.Git.GitTasks;
 
 [CheckBuildProjectConfigurations]
 [UnsetVisualStudioEnvironmentVariables]
-// [GitHubActions(
-//     "scheduled",
-//     GitHubActionsImage.UbuntuLatest,
-//     OnCronSchedule = "0 13 * * 3",
-//     ImportGitHubTokenAs = nameof(GitHubToken),
-//     ImportSecrets =
-//         new[]
-//         {
-//             nameof(ConsumerKey),
-//             nameof(ConsumerSecret),
-//             nameof(AccessToken),
-//             nameof(AccessTokenSecret)
-//         },
-//     InvokedTargets = new[] {nameof(SendTweet)})]
+[GitHubActions(
+    "dispatch",
+    GitHubActionsImage.UbuntuLatest,
+    OnWorkflowDispatchRequiredInputs = new[] {nameof(TweetBaseName)},
+    ImportGitHubTokenAs = nameof(GitHubToken),
+    ImportSecrets =
+        new[]
+        {
+            nameof(TwitterConsumerKey),
+            nameof(TwitterConsumerSecret),
+            nameof(TwitterAccessToken),
+            nameof(TwitterAccessTokenSecret)
+        },
+    InvokedTargets = new[] {nameof(SendTweet)})]
 partial class Build : NukeBuild
 {
     /// Support plugins are available for:
@@ -85,6 +85,7 @@ partial class Build : NukeBuild
             TweetStatistics.Where(x => !x.FavoriteCount.HasValue)
                 .ForEach(x =>
                 {
+                    Console.WriteLine($"Check {x.Url}");
                     var tweet = client.Tweets.GetTweetAsync(x.Id).GetAwaiter().GetResult();
                     x.FavoriteCount = tweet.FavoriteCount;
                     x.RetweetCount = tweet.RetweetCount;
@@ -104,6 +105,8 @@ partial class Build : NukeBuild
         .Requires(() => TwitterAccessTokenSecret)
         .Executes(async () =>
         {
+            return;
+
             string GetTweetBaseName()
                 => TweetDirectory
                     .GlobFiles("*.md")
