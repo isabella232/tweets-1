@@ -1,1 +1,1 @@
-With a generated CI/CD configuration for @teamcity or @azuredevops (💪) we will get an "naive" distribution of test projects, and our agent load could look like this:
+With a generated CI/CD configuration for @teamcity or @azuredevops (💪) we will get a "naive" distribution of test projects, and our agent load could look like this:
