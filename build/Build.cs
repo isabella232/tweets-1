@@ -85,7 +85,6 @@ partial class Build : NukeBuild
             TweetStatistics.Where(x => !x.FavoriteCount.HasValue)
                 .ForEach(x =>
                 {
-                    Console.WriteLine($"Check {x.Url}");
                     var tweet = client.Tweets.GetTweetAsync(x.Id).GetAwaiter().GetResult();
                     x.FavoriteCount = tweet.FavoriteCount;
                     x.RetweetCount = tweet.RetweetCount;
@@ -105,8 +104,6 @@ partial class Build : NukeBuild
         .Requires(() => TwitterAccessTokenSecret)
         .Executes(async () =>
         {
-            return;
-
             string GetTweetBaseName()
                 => TweetDirectory
                     .GlobFiles("*.md")
@@ -146,7 +143,7 @@ partial class Build : NukeBuild
                     .Select(x => x.Result).ToList();
                 var parameters = new PublishTweetParameters
                 {
-                    InReplyToTweetId = TweetStatistics.FirstOrDefault()?.Id,
+                    InReplyToTweetId = TweetStatistics.FirstOrDefault(x => x.FavoriteCount == null)?.Id,
                     Text = text,
                     Medias = media
                 };
