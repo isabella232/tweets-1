@@ -97,7 +97,7 @@ partial class Build : NukeBuild
 
     Target SendTweet => _ => _
         .DependsOn(LoadTweetStatistics)
-        .After(UpdateTweetStatistics)
+        .DependsOn(UpdateTweetStatistics)
         .Triggers(SaveTweetStatistics)
         .Requires(() => TwitterConsumerKey)
         .Requires(() => TwitterConsumerSecret)
